@@ -64,6 +64,36 @@ js/engine.js    Mesin game: state, hotspot, inventaris, dialog, papan deduksi, p
 
 Urutan pemuatan skrip penting: `art.js` → `case1.js` → `engine.js`.
 
+```
+package.json            Skrip npm dan dependensi tes (jsdom)
+test/helpers.js         Memuat game ke jsdom dan mengendalikannya seperti pemain
+test/data.test.js       Tes integritas data kasus
+test/mechanics.test.js  Tes tiap mekanik inti
+test/playthrough.test.js Tes main kasus dari layar judul sampai epilog
+```
+
+## Tes otomatis
+
+Butuh Node.js 20 atau lebih baru. Game sendiri tetap tidak butuh Node; Node hanya dipakai untuk tes.
+
+```bash
+npm install
+```
+
+```bash
+npm test
+```
+
+Tes memakai *test runner* bawaan Node (`node:test`) dan [jsdom](https://github.com/jsdom/jsdom). Game yang diuji adalah `index.html` dan `js/` yang asli, dikendalikan lewat tombol, hotspot, dan dialog seperti pemain.
+
+| File | Yang diperiksa |
+| --- | --- |
+| `data.test.js` | Semua id yang dirujuk ada; resep deduksi 2–3 kartu tanpa duplikat; setiap kesimpulan antara punya minimal 2 jalur; setiap jawaban rekonstruksi ada di bank kata; hotspot berada di dalam layar |
+| `mechanics.test.js` | Tanpa sorotan, batas Sorot, inspeksi berlapis, kombinasi barang, bantahan dengan bukti benar dan salah (termasuk topik yang ditutup), peta bertahap, sebelum/sesudah, papan deduksi, jurnal, hint berjenjang, simpan dan lanjutkan |
+| `playthrough.test.js` | Kasus bisa diselesaikan sampai "Kasus Ditutup"; laporan salah ditolak tanpa menyebut bagian yang salah; kata jawaban hanya muncul setelah petunjuknya ditemukan |
+
+Jalankan `npm test` setiap kali mengubah data kasus. Bila sebuah petunjuk, resep, atau jawaban rusak, tes main kasus atau tes data akan gagal dan menyebut bagiannya. Jalur penyelesaian yang dipakai tes ada di `playToSolution()` dalam `test/helpers.js`; perbarui fungsi itu bila alur kasus sengaja diubah.
+
 ## Menulis kasus baru
 
 Semua isi kasus berada dalam satu objek `CASE` di `js/case1.js`. Mesin game tidak perlu diubah untuk kasus baru dengan mekanik yang sama.

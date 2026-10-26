@@ -1,0 +1,15 @@
+{
+  "name": "detektif-batavia",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Game detektif point-and-click 2D berlatar Batavia 1926",
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.3"
+  }
+}
