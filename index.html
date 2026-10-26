@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detektif Batavia — Kasus Toko Jam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="stage">
+    <header id="topbar">
+      <div class="loc"><span id="loc-title"></span><span id="loc-area"></span></div>
+      <nav>
+        <button id="b-map" data-panel="map">Peta</button>
+        <button id="b-journal" data-panel="journal">Jurnal</button>
+        <button id="b-board" data-panel="board">Papan Deduksi</button>
+        <button id="b-hint">Hint <i id="hint-n"></i></button>
+        <button id="b-reveal" title="Tampilkan sejenak semua area yang bisa diklik">Sorot <i id="reveal-n"></i></button>
+        <button id="b-close" class="accent" data-panel="recon">Tutup Kasus</button>
+        <button id="b-menu">Menu</button>
+      </nav>
+    </header>
+
+    <main id="scene">
+      <div id="scene-art"></div>
+      <div id="hotspots"></div>
+      <button id="btn-back" class="btn small" hidden>‹ Kembali</button>
+      <div id="toasts"></div>
+
+      <div id="dialog" hidden>
+        <div id="dlg-portrait"></div>
+        <div class="dlg-box">
+          <div class="dlg-head"><b id="dlg-name"></b><span id="dlg-role"></span></div>
+          <div id="dlg-text"></div>
+          <div id="dlg-actions"></div>
+          <div class="dlg-tip">Seret barang atau catatan dari bawah ke kotak ini untuk menunjukkan atau membantah.</div>
+        </div>
+      </div>
+
+      <div id="narration" hidden><p></p><span class="more"></span></div>
+      <div id="panel" hidden></div>
+      <div id="doc" hidden></div>
+      <div id="modal" hidden></div>
+      <div id="tip" hidden></div>
+    </main>
+
+    <footer id="invbar">
+      <div class="inv-tabs">
+        <button data-tab="barang" class="on">Barang <i></i></button>
+        <button data-tab="catatan">Catatan <i></i></button>
+      </div>
+      <div id="inv-items"></div>
+      <div id="inv-help"></div>
+      <div id="inv-pop" hidden></div>
+    </footer>
+
+    <div id="screen" hidden></div>
+  </div>
+
+  <script src="js/art.js"></script>
+  <script src="js/case1.js"></script>
+  <script src="js/engine.js"></script>
+</body>
+</html>
